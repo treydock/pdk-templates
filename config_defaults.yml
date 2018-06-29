@@ -64,6 +64,7 @@ common:
     - 2.5.7
   bundler_args: --without system_tests
   docker_sets:
+    - centos-7-x64-docker
   docker_defaults:
     # values will replace @@SET@@ with the docker_sets' value
     rvm: 2.5.7

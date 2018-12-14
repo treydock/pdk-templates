@@ -603,6 +603,29 @@ Gemfile:
           - mswin
           - mingw
           - x64_mingw
+    ':system_tests':
+      - gem: 'puppet-module-posix-system-r#{minor_version}'
+        platforms: ruby
+      - gem: 'puppet-module-win-system-r#{minor_version}'
+        platforms:
+          - mswin
+          - mingw
+          - x64_mingw
+      - gem: beaker
+        version: '~> 4.0'
+        from_env: BEAKER_VERSION
+      - gem: beaker-abs
+        from_env: BEAKER_ABS_VERSION
+        version: '~> 0.1'
+      - gem: beaker-pe
+      - gem: beaker-hostgenerator
+        from_env: BEAKER_HOSTGENERATOR_VERSION
+      - gem: beaker-rspec
+        from_env: BEAKER_RSPEC_VERSION
+      - gem: beaker-docker
+        from_env: BEAKER_DOCKER_VERSION
+      - gem: beaker-puppet
+        from_env: BEAKER_PUPPET_VERSION
 .gitlab-ci.yml:
   defaults:
     cache:

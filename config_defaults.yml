@@ -65,6 +65,9 @@ common:
   bundler_args: --without system_tests
   docker_sets:
     - set: centos-7
+  docker_puppet_collections:
+    - collection: puppet5
+    - collection: puppet6
   docker_defaults:
     # values will replace @@SET@@ with the docker_sets' value
     rvm: 2.5.7

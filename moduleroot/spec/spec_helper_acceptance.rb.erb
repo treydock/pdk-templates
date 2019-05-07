@@ -9,6 +9,16 @@ Dir["#{dir}/acceptance/shared_examples/**/*.rb"].sort.each { |f| require f }
 run_puppet_install_helper
 install_module_on(hosts)
 install_module_dependencies_on(hosts)
+<%- if ! @configs.fetch('puppet_collection_modules', []).empty? -%>
+collection = ENV['BEAKER_PUPPET_COLLECTION'] || 'puppet5'
+<%- @configs['puppet_collection_modules'].each do |collection| -%>
+if collection == '<%= collection['collection'] %>'
+  <%- collection['modules'].each do |m| -%>
+    on hosts, puppet('module', 'install', '<%= m %>')
+  <%- end -%>
+end
+<%- end -%>
+<%- end -%>
 
 RSpec.configure do |c|
   # Readable test descriptions

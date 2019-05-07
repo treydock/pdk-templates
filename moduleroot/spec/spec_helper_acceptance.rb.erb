@@ -14,7 +14,7 @@ collection = ENV['BEAKER_PUPPET_COLLECTION'] || 'puppet5'
 <%- @configs['puppet_collection_modules'].each do |collection| -%>
 if collection == '<%= collection['collection'] %>'
   <%- collection['modules'].each do |m| -%>
-    on hosts, puppet('module', 'install', '<%= m %>')
+  on hosts, puppet('module', 'install', '<%= m %>')
   <%- end -%>
 end
 <%- end -%>

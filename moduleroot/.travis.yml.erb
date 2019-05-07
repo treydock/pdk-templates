@@ -105,7 +105,6 @@ jobs:
   fast_finish: true
   include:
 <% (@configs['docker_sets'] || []).each do |set| -%>
-<% (@configs['docker_puppet_collections'] || []).each do |collection| -%>
 <%   job = @configs['docker_defaults'].merge(set['options'] || {}) -%>
     -
 <%   job.keys.sort.each do |key| -%>
@@ -131,7 +130,6 @@ jobs:
       stage: acceptance
 <%   end -%>
 <%  end -%>
-<% end -%>
 <% end -%>
 <% (@configs['includes'] - (@configs['remove_includes'] || []) + (@configs['extras'] || [])).each do |job| -%>
     -

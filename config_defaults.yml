@@ -92,7 +92,8 @@ common:
     rvm: '2.5.7'
     install_wget: no
   notifications:
-    email: false
+    email:
+      - treydock@gmail.com
   deploy_to_forge:
     enabled: true
     tag_regex: "^v\\d"

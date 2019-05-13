@@ -602,6 +602,7 @@ Gemfile:
           - mswin
           - mingw
           - x64_mingw
+      - gem: puppet-lint-param-docs
     ':system_tests':
       - gem: 'puppet-module-posix-system-r#{minor_version}'
         platforms: ruby

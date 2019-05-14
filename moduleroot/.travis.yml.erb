@@ -106,6 +106,8 @@ jobs:
   include:
 <% (@configs['docker_sets'] || []).each do |set| -%>
 <%   job = @configs['docker_defaults'].merge(set['options'] || {}) -%>
+<%   extra_envs = (set['extra_envs'] || []).map {|e| "#{e.keys[0]}=#{e.values[0]}" }.join(' ') -%>
+<%   job['env'] = job['env'] + ' ' + extra_envs unless extra_envs.empty? -%>
     -
 <%   job.keys.sort.each do |key| -%>
       <%= key %>: <%= job[key].gsub(/@@SET@@/, set['set']).gsub(/@@COLLECTION@@/, set.fetch('collection', 'puppet6')).gsub(/@@TESTMODE@@/, set.fetch('testmode', 'apply')) %>

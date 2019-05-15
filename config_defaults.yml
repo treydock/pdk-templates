@@ -625,8 +625,7 @@ Gemfile:
       - gem: beaker-docker
         from_env: BEAKER_DOCKER_VERSION
       - gem: beaker-puppet
-        git: https://github.com/treydock/beaker-puppet.git
-        branch: BKR-1590
+        from_env: BEAKER_PUPPET_VERSION
   optional:
       ':development':
         - gem: 'github_changelog_generator'

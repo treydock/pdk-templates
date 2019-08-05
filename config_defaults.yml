@@ -127,6 +127,8 @@ Rakefile:
   default_disabled_lint_checks:
     - 'relative'
   extras: []
+  linter_options:
+    - fail_on_warnings
 .rubocop.yml:
   selected_profile: strict
   default_configs: &default_configs

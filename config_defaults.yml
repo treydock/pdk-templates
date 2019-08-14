@@ -675,6 +675,7 @@ spec/acceptance/nodesets/centos-7.yml:
     - which
     - cronie
     - iproute
+    - initscripts
 spec/acceptance/nodesets/debian-8.yml:
   packages:
     - wget

@@ -1,4 +1,5 @@
 <%- name = @configs['module_metadata']['name'].split('-').last rescue '[modulename]' -%>
+<%- packages = @configs['packages'] -%>
 HOSTS:
   ubuntu1604:
     roles:
@@ -9,7 +10,7 @@ HOSTS:
     docker_preserve_image: true
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
-      - 'apt-get install -y -q net-tools wget locales'
+      - 'apt-get install -y <%= packages.join(' ') %>'
       - 'locale-gen en_US.UTF-8'
     docker_container_name: '<%= name %>-ubuntu1604'
 CONFIG:

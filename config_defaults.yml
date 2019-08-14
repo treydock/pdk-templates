@@ -663,3 +663,42 @@ spec/spec_helper.rb:
   mock_with: ":rspec"
   strict_level: ":warning"
   strict_variables: true
+spec/acceptance/nodesets/centos-6.yml:
+  packages:
+    - wget
+    - which
+    - cronie
+    - iproute
+spec/acceptance/nodesets/centos-7.yml:
+  packages:
+    - wget
+    - which
+    - cronie
+    - iproute
+spec/acceptance/nodesets/debian-8.yml:
+  packages:
+    - wget
+    - net-tools
+    - locales
+spec/acceptance/nodesets/debian-9.yml:
+  packages:
+    - wget
+    - net-tools
+    - systemd-sysv
+    - locales
+spec/acceptance/nodesets/debian-10.yml:
+  packages:
+    - wget
+    - net-tools
+    - systemd-sysv
+    - locales
+spec/acceptance/nodesets/ubuntu-1604.yml:
+  packages:
+    - wget
+    - net-tools
+    - locales
+spec/acceptance/nodesets/ubuntu-1804.yml:
+  packages:
+    - wget
+    - net-tools
+    - locales

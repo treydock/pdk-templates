@@ -3,7 +3,9 @@
 HOSTS:
   debian10:
     roles:
-      - agent
+<%- (@configs['roles'] || ['agent']).each do |role| -%>
+      - <%= role %>
+<%- end -%>
     platform: debian-10-amd64
     hypervisor: docker
     image: debian:10

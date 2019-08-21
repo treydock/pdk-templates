@@ -3,7 +3,9 @@
 HOSTS:
   debian8:
     roles:
-      - agent
+<%- (@configs['roles'] || ['agent']).each do |role| -%>
+      - <%= role %>
+<%- end -%>
     platform: debian-8-amd64
     hypervisor: docker
     image: debian:8

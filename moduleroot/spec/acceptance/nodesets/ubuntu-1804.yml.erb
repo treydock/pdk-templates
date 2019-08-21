@@ -3,7 +3,9 @@
 HOSTS:
   ubuntu1804:
     roles:
-      - agent
+<%- (@configs['roles'] || ['agent']).each do |role| -%>
+      - <%= role %>
+<%- end -%>
     platform: ubuntu-18.04-amd64
     hypervisor : docker
     image: ubuntu:18.04

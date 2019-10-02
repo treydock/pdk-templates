@@ -1,0 +1,24 @@
+<%- name = @configs['module_metadata']['name'].split('-').last rescue '[modulename]' -%>
+<%- packages = @configs['packages'] -%>
+HOSTS:
+  centos-8:
+    roles:
+<%- (@configs['roles'] || ['agent']).each do |role| -%>
+      - <%= role %>
+<%- end -%>
+    platform: el-8-x86_64
+    hypervisor: docker
+    image: centos:8
+    docker_preserve_image: true
+    docker_cmd:
+      - '/usr/sbin/init'
+    docker_image_commands:
+      - 'yum install -y <%= packages.join(' ') %>'
+    docker_container_name: '<%= name %>-el7'
+CONFIG:
+  log_level: debug
+  type: foss
+ssh:
+  password: root
+  auth_methods: ["password"]
+

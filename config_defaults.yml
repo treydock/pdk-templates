@@ -680,6 +680,15 @@ spec/acceptance/nodesets/centos-7.yml:
     - cronie
     - iproute
     - initscripts
+spec/acceptance/nodesets/centos-8.yml:
+  roles:
+    - agent
+  packages:
+    - wget
+    - which
+    - cronie
+    - iproute
+    - initscripts
 spec/acceptance/nodesets/debian-8.yml:
   roles:
     - agent

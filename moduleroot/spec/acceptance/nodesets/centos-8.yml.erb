@@ -13,9 +13,10 @@ HOSTS:
     docker_cmd:
       - '/usr/sbin/init'
     docker_image_commands:
+      - 'yum install -y dnf-utils'
       - 'dnf config-manager --set-enabled PowerTools'
       - 'yum install -y <%= packages.join(' ') %>'
-    docker_container_name: '<%= name %>-el7'
+    docker_container_name: '<%= name %>-el8'
 CONFIG:
   log_level: debug
   type: foss

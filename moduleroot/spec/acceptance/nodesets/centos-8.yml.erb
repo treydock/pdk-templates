@@ -13,6 +13,7 @@ HOSTS:
     docker_cmd:
       - '/usr/sbin/init'
     docker_image_commands:
+      - 'dnf config-manager --set-enabled PowerTools'
       - 'yum install -y <%= packages.join(' ') %>'
     docker_container_name: '<%= name %>-el7'
 CONFIG:

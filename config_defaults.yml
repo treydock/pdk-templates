@@ -728,3 +728,5 @@ spec/acceptance/nodesets/ubuntu-1804.yml:
     - wget
     - net-tools
     - locales
+.vscode/extensions.json:
+  delete: true

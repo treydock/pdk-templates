@@ -626,6 +626,8 @@ Gemfile:
         from_env: BEAKER_RSPEC_VERSION
       - gem: beaker-docker
         from_env: BEAKER_DOCKER_VERSION
+        git: 'https://github.com/treydock/beaker-docker'
+        ref: 'c6d1d3dc5f1e8b7770109793d15cfc9927eb1961'
       - gem: beaker-puppet
         from_env: BEAKER_PUPPET_VERSION
   optional:

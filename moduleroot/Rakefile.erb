@@ -130,6 +130,17 @@ EOM
   end
 end
 
+namespace :release do
+  desc "Release commit"
+  task :commit do
+    sh "git add CHANGELOG.md REFERENCE.md metadata.json"
+    sh "git commit -m 'Release #{changelog_future_release}'"
+  end
+end
+
+desc "Release new module version (changelog, reference, commit, tag, gh pages)"
+task :release => [:changelog, "strings:generate:reference", "release:commit", "module:tag", "strings:gh_pages:update"]
+
 <%- [@configs['extras']].flatten.compact.each do |line| -%>
 <%= line %>
 <%- end -%>

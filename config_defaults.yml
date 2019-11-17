@@ -676,6 +676,7 @@ spec/acceptance/nodesets/centos-6.yml:
 spec/acceptance/nodesets/centos-7.yml:
   roles:
     - agent
+  image: centos:7
   packages:
     - wget
     - which

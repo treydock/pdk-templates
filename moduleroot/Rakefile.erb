@@ -29,6 +29,7 @@ import '<%= item %>'
 <% end -%>
 
 def changelog_user
+  return unless (Rake.application.top_level_tasks.include?("changelog") || Rake.application.top_level_tasks.include?("release"))
   returnVal = <%= @configs['changelog_user'].inspect -%> || JSON.load(File.read('metadata.json'))['author']
   raise "unable to find the changelog_user in .sync.yml, or the author in metadata.json" if returnVal.nil?
   puts "GitHubChangelogGenerator user:#{returnVal}"
@@ -36,6 +37,7 @@ def changelog_user
 end
 
 def changelog_project
+  return unless (Rake.application.top_level_tasks.include?("changelog") || Rake.application.top_level_tasks.include?("release"))
   returnVal = <%= @configs['changelog_project'].inspect -%>
 
   returnVal ||= begin
@@ -52,6 +54,7 @@ def changelog_project
 end
 
 def changelog_future_release
+  return unless (Rake.application.top_level_tasks.include?("changelog") || Rake.application.top_level_tasks.include?("release"))
   returnVal = <%= @configs['changelog_version_tag_pattern'].inspect -%> % JSON.load(File.read('metadata.json'))['version']
   raise "unable to find the future_release (version) in metadata.json" if returnVal.nil?
   puts "GitHubChangelogGenerator future_release:#{returnVal}"

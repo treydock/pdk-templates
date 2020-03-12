@@ -699,6 +699,8 @@ spec/acceptance/nodesets/debian-8.yml:
     - wget
     - net-tools
     - locales
+    - apt-transport-https
+    - ca-certificates
 spec/acceptance/nodesets/debian-9.yml:
   roles:
     - agent
@@ -707,6 +709,8 @@ spec/acceptance/nodesets/debian-9.yml:
     - net-tools
     - systemd-sysv
     - locales
+    - apt-transport-https
+    - ca-certificates
 spec/acceptance/nodesets/debian-10.yml:
   roles:
     - agent
@@ -715,6 +719,8 @@ spec/acceptance/nodesets/debian-10.yml:
     - net-tools
     - systemd-sysv
     - locales
+    - apt-transport-https
+    - ca-certificates
 spec/acceptance/nodesets/ubuntu-1604.yml:
   roles:
     - agent
@@ -722,6 +728,8 @@ spec/acceptance/nodesets/ubuntu-1604.yml:
     - wget
     - net-tools
     - locales
+    - apt-transport-https
+    - ca-certificates
 spec/acceptance/nodesets/ubuntu-1804.yml:
   roles:
     - agent
@@ -729,5 +737,7 @@ spec/acceptance/nodesets/ubuntu-1804.yml:
     - wget
     - net-tools
     - locales
+    - apt-transport-https
+    - ca-certificates
 .vscode/extensions.json:
   delete: true

@@ -63,6 +63,8 @@ common:
   ruby_versions:
     - 2.5.7
   bundler_args: --without system_tests
+  global_env:
+    - FACTER_GEM_VERSION="< 4.0"
   docker_defaults:
     # values will replace @@SET@@ with the docker_sets' value
     rvm: 2.5.7

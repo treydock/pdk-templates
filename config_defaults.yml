@@ -562,6 +562,8 @@ Rakefile:
 Gemfile:
   required:
     ':development':
+      - gem: facter
+        version: '< 4.0'
       - gem: fast_gettext
         version: '1.1.0'
         condition: "Gem::Version.new(RUBY_VERSION.dup) < Gem::Version.new('2.1.0')"

@@ -8,6 +8,21 @@ common:
     '*.pp': 'eol=lf'
     '*.sh': 'eol=lf'
     '*.epp': 'eol=lf'
+.github/workflows/ci.yaml:
+  unit_includes:
+    - ruby: '2.4.9'
+      puppet: '5'
+      fixtures: .fixtures.yml
+    - ruby: '2.5.7'
+      puppet: '6'
+      fixtures: .fixtures.yml
+  acceptance_matrix:
+    set:
+      - centos-7
+      - centos-8
+    puppet:
+      - puppet5
+      - puppet6
 .gitignore:
   required: &ignorepaths
       - '.git/'

@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+<%- @configs['unit_includes'].each do |includes| -%>
+  <%- includes.each_pair do |key, value| -%>
+          <%= key == includes.first.first ? '-' : ' ' %> <%= key %>: "<%= value %>"
+  <%- end -%>
+<%- end -%>
+    env:
+      BUNDLE_WITHOUT: development:system_tests:release
+      PUPPET_GEM_VERSION: "~> ${{ matrix.puppet }}.0"
+      FACTER_GEM_VERSION: "< 4.0"
+      FIXTURES_YML: ${{ matrix.fixtures }}
+    name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Validate
+        run: bundle exec rake check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint
+      - name: Run tests
+        run: bundle exec rake parallel_spec
+<%- #if Dir[File.join(@metadata[:workdir], 'spec', 'acceptance', '**', '*_spec.rb')].any? -%>
+<%= @configs %>
+<%- include_envs = [] -%>
+  acceptance:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+      <%- @configs['acceptance_matrix'].each_pair do |option, values| -%>
+        <%= option %>:
+        <%- values.each do |value| -%>
+          - "<%= value %>"
+        <%- end -%>
+      <%- end -%>
+      <%- if @configs['acceptance_includes'].any? -%>
+        include:
+        <%- @configs['acceptance_includes'].each do |inc| -%>
+        <%- inc.each do |key, value| -%>
+          <%- include_envs << key -%>
+          <%= key == inc.first.first ? '-' : ' ' %> <%= key %>: "<%= value %>"
+        <%- end -%>
+        <%- end -%>
+      <%- end -%>
+      <%- if @configs['acceptance_excludes'].any? -%>
+        exclude:
+        <%- @configs['acceptance_excludes'].each do |exclude| -%>
+        <%- exclude.each do |key, value| -%>
+          <%= key == exclude.first.first ? '-' : ' ' %> <%= key %>: "<%= value %>"
+        <%- end -%>
+        <%- end -%>
+      <%- end -%>
+    env:
+      BUNDLE_WITHOUT: development:test:release
+      BEAKER_debug: true
+    name: ${{ matrix.puppet.name }} ${{ matrix.set.name }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          bundler-cache: true
+      - name: Run tests
+        run: bundle exec rake beaker
+        env:
+          BEAKER_PUPPET_COLLETION: ${{ matrix.puppet }}
+          BEAKER_set: ${{ matrix.set }}
+          <%- include_envs.each do |key| -%>
+          BEAKER_<%= key %>: ${{ matrix.<%= key %> }}
+          <%- end -%>
+<%- end -%>

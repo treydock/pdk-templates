@@ -8,6 +8,25 @@ common:
     '*.pp': 'eol=lf'
     '*.sh': 'eol=lf'
     '*.epp': 'eol=lf'
+.github/workflows/ci.yaml:
+  unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
+  unit_includes:
+    - ruby: '2.4.9'
+      puppet: '5'
+      fixtures: .fixtures.yml
+      allow_failure: false
+    - ruby: '2.5.7'
+      puppet: '6'
+      fixtures: .fixtures.yml
+      allow_failure: false
+  acceptance_name: '${{ matrix.puppet }} ${{ matrix.set }}'
+  acceptance_matrix:
+    set:
+      - centos-7
+      - centos-8
+    puppet:
+      - puppet5
+      - puppet6
 .gitignore:
   required: &ignorepaths
       - '.git/'

@@ -14,7 +14,7 @@ HOSTS:
       - '/usr/sbin/init'
     docker_image_commands:
       - 'yum install -y dnf-utils'
-      - 'dnf config-manager --set-enabled PowerTools'
+      - 'dnf config-manager --set-enabled powertools'
       - 'yum install -y <%= packages.join(' ') %>'
     docker_container_name: '<%= name %>-el8'
 CONFIG:

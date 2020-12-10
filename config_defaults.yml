@@ -670,6 +670,8 @@ spec/acceptance/nodesets/centos-8.yml:
     - cronie
     - iproute
     - initscripts
+    - langpacks-en
+    - glibc-all-langpacks
 spec/acceptance/nodesets/debian-8.yml:
   roles:
     - agent

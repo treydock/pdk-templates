@@ -587,11 +587,13 @@ Gemfile:
     ':system_tests':
       - gem: 'puppet-module-posix-system-r#{minor_version}'
         platforms: ruby
+        version: '~> 0.5'
       - gem: 'puppet-module-win-system-r#{minor_version}'
         platforms:
           - mswin
           - mingw
           - x64_mingw
+        version: '~> 0.5'
       - gem: beaker
         version: '~> 4.0'
         from_env: BEAKER_VERSION

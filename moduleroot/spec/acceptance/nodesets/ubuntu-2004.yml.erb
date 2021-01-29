@@ -15,6 +15,10 @@ HOSTS:
       - "rm -f /etc/dpkg/dpkg.cfg.d/excludes"
       - 'apt-get install -y <%= packages.join(' ') %>'
       - 'locale-gen en_US.UTF-8'
+    docker_env:
+      - LANG=en_US.UTF-8
+      - LANGUAGE=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
     docker_container_name: '<%= name %>-ubuntu2004'
 CONFIG:
   log_level: debug

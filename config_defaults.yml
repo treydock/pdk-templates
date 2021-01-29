@@ -19,6 +19,10 @@ common:
       puppet: '6'
       fixtures: .fixtures.yml
       allow_failure: false
+    - ruby: '2.7.0'
+      puppet: '7'
+      fixtures: .fixtures.yml
+      allow_failure: false
   acceptance_name: '${{ matrix.puppet }} ${{ matrix.set }}'
   acceptance_matrix:
     set:
@@ -27,6 +31,7 @@ common:
     puppet:
       - puppet5
       - puppet6
+      - puppet7
 .gitignore:
   required: &ignorepaths
       - '.git/'

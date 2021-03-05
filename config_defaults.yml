@@ -11,10 +11,6 @@ common:
 .github/workflows/ci.yaml:
   unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
   unit_includes:
-    - ruby: '2.4.9'
-      puppet: '5'
-      fixtures: .fixtures.yml
-      allow_failure: false
     - ruby: '2.5.7'
       puppet: '6'
       fixtures: .fixtures.yml
@@ -29,7 +25,6 @@ common:
       - centos-7
       - centos-8
     puppet:
-      - puppet5
       - puppet6
       - puppet7
 .gitignore:

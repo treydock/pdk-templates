@@ -694,14 +694,7 @@ spec/acceptance/nodesets/debian-10.yml:
 spec/acceptance/nodesets/ubuntu-1404.yml:
   delete: true
 spec/acceptance/nodesets/ubuntu-1604.yml:
-  roles:
-    - agent
-  packages:
-    - wget
-    - net-tools
-    - locales
-    - apt-transport-https
-    - ca-certificates
+  delete: true
 spec/acceptance/nodesets/ubuntu-1804.yml:
   roles:
     - agent

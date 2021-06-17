@@ -100,4 +100,7 @@ jobs:
           <%- include_envs.uniq.each do |key| -%>
           BEAKER_<%= key %>: ${{ matrix.<%= key %> }}
           <%- end -%>
+          <%- (@configs['acceptance_env_vars'] || {}).each_pair do |key, value| -%>
+          <%= key %>: <%= value %>
+          <%- end -%>
 <%- end -%>

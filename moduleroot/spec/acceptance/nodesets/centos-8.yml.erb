@@ -19,6 +19,9 @@ HOSTS:
       <%- if @configs['update'] -%>
       - 'dnf update -y'
       <%- end -%>
+    <%- (@configs['extra_commands'] || []).each do |command| -%>
+      - '<%= command %>'
+    <%- end -%>
     docker_env:
       - LANG=en_US.UTF-8
       - LANGUAGE=en_US.UTF-8

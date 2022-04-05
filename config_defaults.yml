@@ -671,6 +671,7 @@ spec/acceptance/nodesets/rocky-8.yml:
     - initscripts
     - langpacks-en
     - glibc-all-langpacks
+    - cpio
 spec/acceptance/nodesets/debian-8.yml:
   delete: true
 spec/acceptance/nodesets/debian-9.yml:

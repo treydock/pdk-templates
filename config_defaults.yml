@@ -11,11 +11,11 @@ common:
 .github/workflows/ci.yaml:
   unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
   unit_includes:
-    - ruby: '2.5.7'
+    - ruby: '2.5.9'
       puppet: '6'
       fixtures: .fixtures.yml
       allow_failure: false
-    - ruby: '2.7.0'
+    - ruby: '2.7.6'
       puppet: '7'
       fixtures: .fixtures.yml
       allow_failure: false
@@ -610,6 +610,8 @@ Gemfile:
         version: '~> 0.7.0'
       - gem: beaker-puppet
         from_env: BEAKER_PUPPET_VERSION
+      - gem: beaker-puppet_install_helper
+      - gem: beaker-module_install_helper
   optional:
       ':development':
         - gem: 'github_changelog_generator'

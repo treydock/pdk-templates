@@ -595,7 +595,7 @@ Gemfile:
           - x64_mingw
         version: '~> 0.5'
       - gem: beaker
-        version: '~> 4.0'
+        version: '~> 4.29'
         from_env: BEAKER_VERSION
       - gem: beaker-abs
         from_env: BEAKER_ABS_VERSION

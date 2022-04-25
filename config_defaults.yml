@@ -694,6 +694,16 @@ spec/acceptance/nodesets/debian-10.yml:
     - locales
     - apt-transport-https
     - ca-certificates
+spec/acceptance/nodesets/debian-11.yml:
+  roles:
+    - agent
+  packages:
+    - wget
+    - net-tools
+    - systemd-sysv
+    - locales
+    - apt-transport-https
+    - ca-certificates
 spec/acceptance/nodesets/ubuntu-1404.yml:
   delete: true
 spec/acceptance/nodesets/ubuntu-1604.yml:

@@ -119,7 +119,6 @@
 - Style/BarePercentLiterals
 - Style/BlockComments
 - Style/BlockDelimiters
-- Style/BracesAroundHashParameters
 - Style/CharacterLiteral
 - Style/ClassCheck
 - Style/ClassMethods

@@ -2,10 +2,6 @@
 :default_enabled_cops:
 - Bundler/DuplicatedGem
 - Bundler/OrderedGems
-- GetText/DecorateFunctionMessage
-- GetText/DecorateString
-- GetText/DecorateStringFormattingUsingInterpolation
-- GetText/DecorateStringFormattingUsingPercent
 - Layout/AccessModifierIndentation
 - Layout/AlignArray
 - Layout/AlignHash
@@ -32,7 +28,7 @@
 - Layout/IndentArray
 - Layout/IndentAssignment
 - Layout/IndentHash
-- Layout/IndentHeredoc
+- Layout/HeredocIndentation
 - Layout/IndentationConsistency
 - Layout/IndentationWidth
 - Layout/InitialIndentation

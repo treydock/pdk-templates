@@ -6,6 +6,13 @@ on:
       - main
       - master
   pull_request:
+<%- unless @configs['run_on_schedule'].empty? -%>
+  schedule:
+  <%- @configs['run_on_schedule'].each do |schedule| -%>
+    - cron: '<%= schedule %>'
+  <%- end -%>
+<%- end -%>
+
 
 jobs:
   unit:

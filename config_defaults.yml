@@ -589,7 +589,6 @@ Gemfile:
         from_env: BEAKER_RSPEC_VERSION
       - gem: beaker-docker
         from_env: BEAKER_DOCKER_VERSION
-        version: '~> 0.7.0'
       - gem: beaker-puppet
         from_env: BEAKER_PUPPET_VERSION
       - gem: beaker-puppet_install_helper

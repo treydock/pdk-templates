@@ -23,8 +23,9 @@ common:
   acceptance_name: '${{ matrix.puppet }} ${{ matrix.set }}'
   acceptance_matrix:
     set:
-      - centos-7
-      - rocky-8
+      - el7
+      - el8
+      - el9
     puppet:
       - puppet6
       - puppet7
@@ -631,6 +632,8 @@ spec/spec_helper.rb:
 spec/acceptance/nodesets/centos-6.yml:
   delete: true
 spec/acceptance/nodesets/centos-7.yml:
+  delete: true
+spec/acceptance/nodesets/el7.yml:
   roles:
     - agent
   image: centos:7
@@ -643,9 +646,24 @@ spec/acceptance/nodesets/centos-7.yml:
 spec/acceptance/nodesets/centos-8.yml:
   delete: true
 spec/acceptance/nodesets/rocky-8.yml:
+  delete: true
+spec/acceptance/nodesets/el8.yml:
   roles:
     - agent
-  image: rockylinux/rockylinux:8
+  image: almalinux:8
+  packages:
+    - wget
+    - which
+    - cronie
+    - iproute
+    - initscripts
+    - langpacks-en
+    - glibc-all-langpacks
+    - cpio
+spec/acceptance/nodesets/el9.yml:
+  roles:
+    - agent
+  image: almalinux:9
   packages:
     - wget
     - which

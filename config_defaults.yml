@@ -721,6 +721,7 @@ spec/acceptance/nodesets/ubuntu-1804.yml:
     - locales
     - apt-transport-https
     - ca-certificates
+    - lsb-release
 spec/acceptance/nodesets/ubuntu-2004.yml:
   roles:
     - agent

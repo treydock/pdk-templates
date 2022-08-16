@@ -678,15 +678,7 @@ spec/acceptance/nodesets/el9.yml:
 spec/acceptance/nodesets/debian-8.yml:
   delete: true
 spec/acceptance/nodesets/debian-9.yml:
-  roles:
-    - agent
-  packages:
-    - wget
-    - net-tools
-    - systemd-sysv
-    - locales
-    - apt-transport-https
-    - ca-certificates
+  delete: true
 spec/acceptance/nodesets/debian-10.yml:
   roles:
     - agent

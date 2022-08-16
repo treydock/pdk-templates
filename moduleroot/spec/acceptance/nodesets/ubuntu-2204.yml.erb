@@ -1,0 +1,32 @@
+<%- name = @configs['module_metadata']['name'].split('-').last rescue '[modulename]' -%>
+<%- packages = @configs['packages'] -%>
+HOSTS:
+  ubuntu2204:
+    roles:
+<%- (@configs['roles'] || ['agent']).each do |role| -%>
+      - <%= role %>
+<%- end -%>
+    platform: ubuntu-22.04-amd64
+    hypervisor : docker
+    image: ubuntu:22.04
+    docker_preserve_image: true
+    docker_cmd: '["/sbin/init"]'
+    docker_image_commands:
+      - "rm -f /etc/dpkg/dpkg.cfg.d/excludes"
+      - 'apt-get install -y <%= packages.join(' ') %>'
+      - 'locale-gen en_US.UTF-8'
+    <%- (@configs['extra_commands'] || []).each do |command| -%>
+      - '<%= command %>'
+    <%- end -%>
+    docker_env:
+      - LANG=en_US.UTF-8
+      - LANGUAGE=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
+    docker_container_name: '<%= name %>-ubuntu2204'
+CONFIG:
+  log_level: debug
+  type: foss
+ssh:
+  password: root
+  auth_methods: ["password"]
+

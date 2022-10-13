@@ -661,6 +661,7 @@ spec/acceptance/nodesets/el8.yml:
     - initscripts
     - langpacks-en
     - glibc-all-langpacks
+    - glibc-langpack-en
     - cpio
 spec/acceptance/nodesets/el9.yml:
   roles:
@@ -674,6 +675,7 @@ spec/acceptance/nodesets/el9.yml:
     - initscripts
     - langpacks-en
     - glibc-all-langpacks
+    - glibc-langpack-en
     - cpio
 spec/acceptance/nodesets/debian-8.yml:
   delete: true

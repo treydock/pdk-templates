@@ -456,6 +456,8 @@ Rakefile:
         RSpec/ExpectOutput:
         RSpec/FilePath:
         RSpec/Focus:
+        RSpec/ImplicitSubject:
+          Enabled: false
         RSpec/InstanceVariable:
         RSpec/IteratedExpectation:
         RSpec/LetSetup:

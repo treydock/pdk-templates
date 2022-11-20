@@ -173,6 +173,10 @@ Rakefile:
 
     Lint/BooleanSymbol:
       Enabled: false
+
+    Naming/MethodParameterName:
+      AllowedNames:
+        - is
   cleanup_cops: &cleanup_cops
     Bundler/OrderedGems:
     Layout/AccessModifierIndentation:

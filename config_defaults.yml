@@ -170,6 +170,9 @@ Rakefile:
 
     RSpec/ImplicitSubject:
       Enabled: false
+
+    Lint/BooleanSymbol:
+      Enabled: false
   cleanup_cops: &cleanup_cops
     Bundler/OrderedGems:
     Layout/AccessModifierIndentation:

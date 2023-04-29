@@ -12,12 +12,12 @@ common:
   run_on_schedule: []
   unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
   unit_includes:
-    - ruby: '2.5.9'
-      puppet: '6'
+    - ruby: '2.7.7'
+      puppet: '7'
       fixtures: .fixtures.yml
       allow_failure: false
-    - ruby: '2.7.6'
-      puppet: '7'
+    - ruby: '3.2.2'
+      puppet: '8'
       fixtures: .fixtures.yml
       allow_failure: false
   acceptance_name: '${{ matrix.puppet }} ${{ matrix.set }}'
@@ -27,8 +27,8 @@ common:
       - el8
       - el9
     puppet:
-      - puppet6
       - puppet7
+      - puppet8
 .gitignore:
   required: &ignorepaths
       - '.git/'

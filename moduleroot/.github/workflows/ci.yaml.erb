@@ -30,7 +30,6 @@ jobs:
     env:
       BUNDLE_WITHOUT: system_tests:release
       PUPPET_GEM_VERSION: "~> ${{ matrix.puppet }}.0"
-      FACTER_GEM_VERSION: "< 4.0"
       FIXTURES_YML: ${{ matrix.fixtures }}
     name: <%= @configs['unit_name'] %>
     steps:

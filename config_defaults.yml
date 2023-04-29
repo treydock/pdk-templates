@@ -665,16 +665,7 @@ spec/acceptance/nodesets/ubuntu-1404.yml:
 spec/acceptance/nodesets/ubuntu-1604.yml:
   delete: true
 spec/acceptance/nodesets/ubuntu-1804.yml:
-  roles:
-    - agent
-  packages:
-    - wget
-    - net-tools
-    - iproute2
-    - locales
-    - apt-transport-https
-    - ca-certificates
-    - lsb-release
+  delete: true
 spec/acceptance/nodesets/ubuntu-2004.yml:
   roles:
     - agent

@@ -21,6 +21,9 @@ HOSTS:
       - LANG=en_US.UTF-8
       - LANGUAGE=en_US.UTF-8
       - LC_ALL=en_US.UTF-8
+    <%- (@configs['docker_env'] || [] ).each do |docker_env| -%>
+      - <%= docker_env %>
+    <%- end -%>
     docker_container_name: '<%= name %>-el7'
     <%- if @configs.key?('default_module_install_opts') -%>
     default_module_install_opts:

@@ -22,7 +22,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
+<%- unit_excludes = @configs['unit_excludes'] || {} -%>
 <%- @configs['unit_includes'].each do |includes| -%>
+  <%- skip = false -%>
+  <%- includes.each_pair do |key, value| -%>
+    <%- skip = true if unit_excludes.key?(key) && unit_excludes[key] == value -%>
+  <%- end -%>
+  <%- next if skip -%>
   <%- includes.each_pair do |key, value| -%>
           <%= key == includes.first.first ? '-' : ' ' %> <%= key %>: <%= value %>
   <%- end -%>

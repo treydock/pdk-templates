@@ -532,7 +532,7 @@ Gemfile:
   required:
     ':development':
       - gem: voxpupuli-test
-        version: '5.4.1'
+        version: '7.0.0'
     ':system_tests':
       - gem: beaker
         version: '~> 4.29'

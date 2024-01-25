@@ -547,8 +547,13 @@ Gemfile:
         from_env: BEAKER_RSPEC_VERSION
       - gem: beaker-docker
         from_env: BEAKER_DOCKER_VERSION
+        git: 'https://github.com/treydock/beaker-docker.git'
+        branch: 'amazon-2023'
       - gem: beaker-puppet
         from_env: BEAKER_PUPPET_VERSION
+        # Support Amazon 2023
+        git: 'https://github.com/puppetlabs/beaker-puppet.git'
+        ref: '6063d22b6c4449df795731f5853c3c75241240c4'
       - gem: beaker-puppet_install_helper
       - gem: beaker-module_install_helper
   optional:

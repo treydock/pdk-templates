@@ -616,7 +616,7 @@ spec/acceptance/nodesets/rocky-8.yml:
 spec/acceptance/nodesets/el8.yml:
   roles:
     - agent
-  image: almalinux:8
+  image: rockylinux:8
   packages:
     - wget
     - which
@@ -630,7 +630,7 @@ spec/acceptance/nodesets/el8.yml:
 spec/acceptance/nodesets/el9.yml:
   roles:
     - agent
-  image: almalinux:9
+  image: rockylinux:9
   packages:
     - wget
     - which

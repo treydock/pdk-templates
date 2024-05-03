@@ -1,7 +1,7 @@
 <%- name = @configs['module_metadata']['name'].split('-').last rescue '[modulename]' -%>
 <%- packages = @configs['packages'] -%>
 HOSTS:
-  almalinux-9:
+  el9:
     roles:
 <%- (@configs['roles'] || ['agent']).each do |role| -%>
       - <%= role %>

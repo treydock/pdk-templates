@@ -701,5 +701,15 @@ spec/acceptance/nodesets/ubuntu-2204.yml:
     - locales
     - apt-transport-https
     - ca-certificates
+spec/acceptance/nodesets/ubuntu-2404.yml:
+  roles:
+    - agent
+  packages:
+    - wget
+    - net-tools
+    - iproute2
+    - locales
+    - apt-transport-https
+    - ca-certificates
 .vscode/extensions.json:
   delete: true

@@ -23,7 +23,6 @@ common:
   acceptance_name: '${{ matrix.puppet }} ${{ matrix.set }}'
   acceptance_matrix:
     set:
-      - el7
       - el8
       - el9
     puppet:
@@ -605,18 +604,7 @@ spec/acceptance/nodesets/centos-6.yml:
 spec/acceptance/nodesets/centos-7.yml:
   delete: true
 spec/acceptance/nodesets/el7.yml:
-  roles:
-    - agent
-  image: centos:7
-  packages:
-    - wget
-    - which
-    - cronie
-    - iproute
-    - initscripts
-  extra_commands:
-    - wget --no-check-certificate https://copr.fedorainfracloud.org/coprs/jsynacek/systemd-backports-for-centos-7/repo/epel-7/jsynacek-systemd-backports-for-centos-7-epel-7.repo -O /etc/yum.repos.d/jsynacek-systemd-centos-7.repo
-    - yum update -y systemd
+  delete: true
 spec/acceptance/nodesets/centos-8.yml:
   delete: true
 spec/acceptance/nodesets/rocky-8.yml:

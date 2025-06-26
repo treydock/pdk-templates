@@ -10,6 +10,7 @@ common:
     '*.epp': 'eol=lf'
 .github/workflows/ci.yaml:
   run_on_schedule: []
+  workflow_dispatch: false
   unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
   unit_includes:
     - ruby: '2.7.8'

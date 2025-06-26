@@ -12,6 +12,9 @@ on:
     - cron: '<%= schedule %>'
   <%- end -%>
 <%- end -%>
+<%- if @configs['workflow_dispatch'] -%>
+  workflow_dispatch: {}
+<%- end -%>
 
 
 jobs:

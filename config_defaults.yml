@@ -13,10 +13,6 @@ common:
   workflow_dispatch: false
   unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
   unit_includes:
-    - ruby: '2.7.8'
-      puppet: '7'
-      fixtures: .fixtures.yml
-      allow_failure: false
     - ruby: '3.2.3'
       puppet: '8'
       fixtures: .fixtures.yml
@@ -27,7 +23,6 @@ common:
       - el8
       - el9
     puppet:
-      - puppet7
       - puppet8
 .gitignore:
   required: &ignorepaths
@@ -540,7 +535,7 @@ Gemfile:
   required:
     ':development':
       - gem: voxpupuli-test
-        version: '7.0.0'
+        version: '9.2.1'
     ':system_tests':
       - gem: beaker
         version: '~> 4.29'

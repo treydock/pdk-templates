@@ -538,8 +538,6 @@ Gemfile:
         version: '9.2.1'
     ':system_tests':
       - gem: beaker
-        version: '~> 4.29'
-        from_env: BEAKER_VERSION
       - gem: beaker-abs
         from_env: BEAKER_ABS_VERSION
         version: '~> 0.1'
@@ -549,9 +547,7 @@ Gemfile:
       - gem: beaker-rspec
         from_env: BEAKER_RSPEC_VERSION
       - gem: beaker-docker
-        from_env: BEAKER_DOCKER_VERSION
-        git: 'https://github.com/treydock/beaker-docker.git'
-        branch: 'amazon-2023'
+        version: '~> 2.2.0'
       - gem: beaker-puppet
         from_env: BEAKER_PUPPET_VERSION
         # Support Amazon 2023

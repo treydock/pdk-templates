@@ -1,0 +1,45 @@
+<%- name = @configs['module_metadata']['name'].split('-').last rescue '[modulename]' -%>
+<%- packages = @configs['packages'] -%>
+HOSTS:
+  el10:
+    roles:
+<%- (@configs['roles'] || ['agent']).each do |role| -%>
+      - <%= role %>
+<%- end -%>
+    platform: el-9-x86_64
+    hypervisor: docker
+    image: <%= @configs['image'] %>
+    docker_preserve_image: true
+    docker_cmd:
+      - '/usr/sbin/init'
+    docker_image_commands:
+      - 'dnf install -y dnf-utils'
+      - 'dnf config-manager --set-enabled crb'
+      - 'dnf install -y <%= packages.join(' ') %>'
+      <%- if @configs['update'] -%>
+      - 'dnf update -y'
+      <%- end -%>
+    <%- (@configs['extra_commands'] || []).each do |command| -%>
+      - '<%= command %>'
+    <%- end -%>
+    docker_env:
+      - LANG=en_US.UTF-8
+      - LANGUAGE=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
+    <%- (@configs['docker_env'] || [] ).each do |docker_env| -%>
+      - <%= docker_env %>
+    <%- end -%>
+    docker_container_name: '<%= name %>-el10'
+    <%- if @configs.key?('default_module_install_opts') -%>
+    default_module_install_opts:
+    <%- end -%>
+    <%- (@configs['default_module_install_opts'] || {}).each_pair do |key, value| -%>
+      <%= key %>: <%= value %>
+    <%- end -%>
+CONFIG:
+  log_level: debug
+  type: foss
+ssh:
+  password: root
+  auth_methods: ["password"]
+

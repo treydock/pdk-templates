@@ -629,6 +629,20 @@ spec/acceptance/nodesets/el9.yml:
     - glibc-all-langpacks
     - glibc-langpack-en
     - cpio
+spec/acceptance/nodesets/el10.yml:
+  roles:
+    - agent
+  image: almalinux:10
+  packages:
+    - wget
+    - which
+    - cronie
+    - iproute
+    - initscripts
+    - langpacks-en
+    - glibc-all-langpacks
+    - glibc-langpack-en
+    - cpio
 spec/acceptance/nodesets/debian-8.yml:
   delete: true
 spec/acceptance/nodesets/debian-9.yml:

@@ -643,6 +643,7 @@ spec/acceptance/nodesets/el10.yml:
     - glibc-all-langpacks
     - glibc-langpack-en
     - cpio
+    - gnupg2
 spec/acceptance/nodesets/debian-8.yml:
   delete: true
 spec/acceptance/nodesets/debian-9.yml:

@@ -57,7 +57,8 @@ jobs:
 <%- if @configs['acceptance_matrix'] -%>
 <%- include_envs = [] -%>
   acceptance:
-    runs-on: ubuntu-latest
+    # Run on 22.04 until newer doesn't cause ioctl errors for el10 tests
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:

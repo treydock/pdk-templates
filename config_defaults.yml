@@ -537,24 +537,8 @@ Gemfile:
       - gem: voxpupuli-test
         version: '9.2.1'
     ':system_tests':
-      - gem: beaker
-      - gem: beaker-abs
-        from_env: BEAKER_ABS_VERSION
-        version: '~> 0.1'
-      - gem: beaker-pe
-      - gem: beaker-hostgenerator
-        from_env: BEAKER_HOSTGENERATOR_VERSION
-      - gem: beaker-rspec
-        from_env: BEAKER_RSPEC_VERSION
-      - gem: beaker-docker
-        version: '~> 2.2.0'
-      - gem: beaker-puppet
-        from_env: BEAKER_PUPPET_VERSION
-        # Support Amazon 2023
-        git: 'https://github.com/puppetlabs/beaker-puppet.git'
-        ref: '6063d22b6c4449df795731f5853c3c75241240c4'
-      - gem: beaker-puppet_install_helper
-      - gem: beaker-module_install_helper
+      - gem: voxpupuli-acceptance
+        version: '~> 4.4.0'
   optional:
       ':development':
         - gem: 'faraday'

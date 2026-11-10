@@ -11,7 +11,7 @@ if ['debian-12', 'debian-13', 'ubuntu-2404', 'ubuntu-2604'].include?(ENV['BEAKER
 end
 configure_beaker
 <%- if ! @configs.fetch('puppet_collection_modules', []).empty? -%>
-collection = ENV['BEAKER_PUPPET_COLLECTION'] || 'puppet5'
+collection = ENV['BEAKER_PUPPET_COLLECTION'] || 'openvox8'
 <%- @configs['puppet_collection_modules'].each do |collection| -%>
 if collection == '<%= collection['collection'] %>'
   <%- collection['modules'].each do |m| -%>

@@ -38,7 +38,7 @@ jobs:
 <%- end -%>
     env:
       BUNDLE_WITHOUT: system_tests:release
-      PUPPET_GEM_VERSION: "~> ${{ matrix.puppet }}.0"
+      OPENVOX_GEM_VERSION: "~> ${{ matrix.openvox }}.0"
       FIXTURES_YML: ${{ matrix.fixtures }}
     name: <%= @configs['unit_name'] %>
     steps:
@@ -49,9 +49,8 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
           cache-version: 3
-          bundler: '2.4.13'
       - name: Validate
-        run: bundle exec rake check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint
+        run: bundle exec rake check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint
       - name: Run tests
         run: bundle exec rake parallel_spec
 <%- if @configs['acceptance_matrix'] -%>
@@ -63,7 +62,7 @@ jobs:
       fail-fast: false
       matrix:
       <%- @configs['acceptance_matrix'].each_pair do |option, values| -%>
-        <%- include_envs << option unless ['puppet','set'].include?(option) -%>
+        <%- include_envs << option unless ['openvox','set'].include?(option) -%>
         <%= option %>:
         <%- values.each do |value| -%>
           - "<%= value %>"
@@ -73,7 +72,7 @@ jobs:
         include:
         <%- @configs['acceptance_includes'].each do |inc| -%>
         <%- inc.each do |key, value| -%>
-          <%- include_envs << key unless ['puppet','set'].include?(key) -%>
+          <%- include_envs << key unless ['openvox','set'].include?(key) -%>
           <%= key == inc.first.first ? '-' : ' ' %> <%= key %>: "<%= value %>"
         <%- end -%>
         <%- end -%>
@@ -87,7 +86,7 @@ jobs:
         <%- end -%>
       <%- end -%>
     env:
-      BUNDLE_WITHOUT: development:release
+      BUNDLE_WITHOUT: release
       BEAKER_debug: true
     name: <%= @configs['acceptance_name'] %>
     steps:
@@ -114,7 +113,7 @@ jobs:
       - name: Run tests
         run: bundle exec rake beaker
         env:
-          BEAKER_PUPPET_COLLECTION: ${{ matrix.puppet }}
+          BEAKER_PUPPET_COLLECTION: ${{ matrix.openvox }}
           BEAKER_set: ${{ matrix.set }}
           <%- include_envs.uniq.each do |key| -%>
           BEAKER_<%= key %>: ${{ matrix.<%= key %> }}

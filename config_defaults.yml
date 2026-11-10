@@ -11,19 +11,24 @@ common:
 .github/workflows/ci.yaml:
   run_on_schedule: []
   workflow_dispatch: false
-  unit_name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
+  unit_name: OpenVox ${{ matrix.openvox }} (Ruby ${{ matrix.ruby }})
   unit_includes:
     - ruby: '3.2'
-      puppet: '8'
+      openvox: '8'
       fixtures: .fixtures.yml
       allow_failure: false
-  acceptance_name: '${{ matrix.puppet }} ${{ matrix.set }}'
+    - ruby: '4.0'
+      openvox: '9'
+      fixtures: .fixtures.yml
+      allow_failure: false
+  acceptance_name: '${{ matrix.openvox }} ${{ matrix.set }}'
   acceptance_matrix:
     set:
       - el8
       - el9
-    puppet:
-      - puppet8
+    openvox:
+      - openvox8
+      - openvox9
 .gitignore:
   required: &ignorepaths
       - '.git/'
@@ -76,28 +81,7 @@ common:
 .yardopts:
   markup: markdown
 appveyor.yml:
-  appveyor_bundle_install: "bundle install --jobs 4 --retry 2 --without system_tests"
-  use_litmus: false
-  matrix:
-    - RUBY_VERSION: 24-x64
-      CHECK: "syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
-    - PUPPET_GEM_VERSION: ~> 5.0
-      RUBY_VERSION: 24
-      CHECK: parallel_spec
-    - PUPPET_GEM_VERSION: ~> 5.0
-      RUBY_VERSION: 24-x64
-      CHECK: parallel_spec
-    - PUPPET_GEM_VERSION: ~> 6.0
-      RUBY_VERSION: 25
-      CHECK: parallel_spec
-    - PUPPET_GEM_VERSION: ~> 6.0
-      RUBY_VERSION: 25-x64
-      CHECK: parallel_spec
-  test_script:
-    - bundle exec rake %CHECK%
-  branches:
-    - master
-    - release
+  delete: true
 Rakefile:
   changelog_version_tag_pattern: 'v%s'
   default_disabled_lint_checks:
@@ -108,7 +92,7 @@ Rakefile:
 .rubocop.yml:
   selected_profile: strict
   default_configs: &default_configs
-    Metrics/LineLength:
+    Layout/LineLength:
       Description: People have wide screens, use them.
       Max: 200
 
@@ -172,6 +156,9 @@ Rakefile:
       EnforcedStyle: brackets
 
     RSpec/ImplicitSubject:
+      Enabled: false
+
+    RSpec/NoExpectationExample:
       Enabled: false
 
     Lint/BooleanSymbol:
@@ -453,7 +440,7 @@ Rakefile:
         Lint/UselessSetterCall:
         Lint/Void:
         Metrics/BlockNesting:
-        Metrics/LineLength:
+        Layout/LineLength:
         Performance/Caller:
         Performance/EndWith:
         Performance/FixedSize:
@@ -535,35 +522,16 @@ Gemfile:
   required:
     ':development':
       - gem: voxpupuli-test
-        version: '9.2.1'
+        version: '~> 14.0'
     ':system_tests':
       - gem: voxpupuli-acceptance
-        version: '~> 4.4.0'
+        version: '~> 4.4'
   optional:
-      ':development':
-        - gem: 'faraday'
-          version: '~> 1.0'
-        - gem: 'github_changelog_generator'
-        - gem: 'puppet-blacksmith'
-        - gem: 'puppet-strings'
+      ':release':
+        - gem: 'voxpupuli-release'
+          version: '~> 5.5'
 .gitlab-ci.yml:
-  defaults:
-    cache:
-      paths:
-        - 'vendor/bundle'
-    bundler_args: '--without system_tests --path vendor/bundle --jobs $(nproc)'
-    ruby_versions:
-      '2.5.7':
-        checks:
-          - 'syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop'
-          - parallel_spec
-        puppet_version: '~> 6'
-      '2.4.5':
-        checks:
-          - parallel_spec
-        puppet_version: '~> 5'
-    # beaker: true
-    default_before_script: true
+  delete: true
 spec/default_facts.yml:
   ipaddress: "172.16.254.254"
   ipaddress6: "FE80:0000:0000:0000:AAAA:AAAA:AAAA"

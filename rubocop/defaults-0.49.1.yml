@@ -133,7 +133,7 @@
 - Metrics/BlockNesting
 - Metrics/ClassLength
 - Metrics/CyclomaticComplexity
-- Metrics/LineLength
+- Layout/LineLength
 - Metrics/MethodLength
 - Metrics/ModuleLength
 - Metrics/ParameterLists

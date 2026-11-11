@@ -60,8 +60,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+      <%- puppet = @configs['acceptance_matrix'].fetch('puppet', []).map { |p| p.gsub('puppet', 'openvox') } -%>
+      <%- @configs['acceptance_matrix']['openvox'] = puppet unless puppet.empty? -%>
+      <%- @configs['acceptance_matrix'].delete('puppet') -%>
       <%- @configs['acceptance_matrix'].each_pair do |option, values| -%>
-        <%- option = 'openvox' if option == 'puppet' -%>
         <%- include_envs << option unless ['openvox','set'].include?(option) -%>
         <%= option %>:
         <%- values.each do |value| -%>

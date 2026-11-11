@@ -61,9 +61,11 @@ jobs:
       fail-fast: false
       matrix:
       <%- @configs['acceptance_matrix'].each_pair do |option, values| -%>
+        <%- option = 'openvox' if option == 'puppet' -%>
         <%- include_envs << option unless ['openvox','set'].include?(option) -%>
         <%= option %>:
         <%- values.each do |value| -%>
+          <%- value = 'openvox8' if value == 'puppet8' -%>
           - "<%= value %>"
         <%- end -%>
       <%- end -%>
@@ -71,6 +73,8 @@ jobs:
         include:
         <%- @configs['acceptance_includes'].each do |inc| -%>
         <%- inc.each do |key, value| -%>
+          <%- key = 'openvox' if key == 'puppet' -%>
+          <%- value = 'openvox8' if value == 'puppet8' -%>
           <%- include_envs << key unless ['openvox','set'].include?(key) -%>
           <%= key == inc.first.first ? '-' : ' ' %> <%= key %>: "<%= value %>"
         <%- end -%>
